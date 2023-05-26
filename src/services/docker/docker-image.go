@@ -10,6 +10,7 @@ type DockerImage struct {
 	Name      string
 	Directory string
 	Tag       string
+	Port      string
 }
 
 func (dockerImage DockerImage) RemoteTag() string {

@@ -41,6 +41,12 @@ func Flags(command FlagsType) []cli.Flag {
 				Required: true,
 				Category: "deploy",
 			},
+			&cli.StringFlag{
+				Name:     "app-port",
+				EnvVars:  []string{"KKA_APP_PORT"},
+				Required: false,
+				Category: "deploy",
+			},
 		},
 		Registry: []cli.Flag{
 			&cli.StringFlag{

@@ -28,6 +28,7 @@ func (c *CLI) init(cCtx *cli.Context) {
 	repoName := cCtx.String("repo-name")
 	dockerFileName := cCtx.String("dockerfile-name")
 	appName := cCtx.String("app-name")
+	appPort := cCtx.String("app-port")
 	version := cCtx.String("app-version")
 	projectDirectory := cCtx.String("project-directory")
 
@@ -44,6 +45,7 @@ func (c *CLI) init(cCtx *cli.Context) {
 		Name:      appName,
 		Directory: projectDirectory,
 		Tag:       version,
+		Port:      appPort,
 	}
 
 	dockerService, err := docker.New(project, dockerImage, dockerFileName)
