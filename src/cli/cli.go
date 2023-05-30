@@ -2,7 +2,6 @@ package cli
 
 import (
 	"embed"
-	"log"
 	"os"
 	"path"
 
@@ -13,13 +12,14 @@ import (
 	"github.com/nearform/k8s-kurated-addons-cli/src/utils/logger"
 
 	"github.com/urfave/cli/v2"
+    "github.com/joho/godotenv"
 )
 
 type CLI struct {
 	Resources     embed.FS
 	CWD           string
 	DockerService docker.DockerService
-	project       project.Project
+	Project       project.Project
 	dockerImage   docker.DockerImage
 }
 
@@ -53,17 +53,25 @@ func (c *CLI) init(cCtx *cli.Context) {
 
 	c.DockerService = dockerService
 	c.dockerImage = dockerImage
-	c.project = project
+	c.Project = project
 }
 
 func (c *CLI) getProject(cCtx *cli.Context) *project.Project {
-	if (c.project == project.Project{}) {
+	if (c.Project == project.Project{}) {
 		c.init(cCtx)
 	}
-	return &c.project
+	return &c.Project
 }
 
-func (c CLI) Run() {
+func (c CLI) Run() error {
+    configFilePath := os.Getenv("KKA_CONFIG_FILE")
+    if (configFilePath != "") {
+        err := godotenv.Load(configFilePath)
+        if (err != nil) {
+            logger.PrintError("Unable to open config file", err)
+        }
+    }
+
 	flags := []cli.Flag{
 		&cli.StringFlag{
 			Name:    "app-name",
@@ -112,7 +120,5 @@ func (c CLI) Run() {
 		},
 	}
 
-	if err := app.Run(os.Args); err != nil {
-		log.Fatal(err)
-	}
+	return app.Run(os.Args)
 }

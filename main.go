@@ -25,5 +25,8 @@ func main() {
 		CWD:       cwd,
 	}
 
-	cli.Run()
+
+	if err := cli.Run(); err != nil {
+        log.Fatal(err)
+    }
 }

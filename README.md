@@ -36,3 +36,7 @@ You will be able to run the executable from
 ```bash
 ./bin/kka-cli
 ```
+
+### Automation
+
+You have the option of using parameters or environment variables. The CLI assumes you will have a file called `.env` in the root of the project. An example of the `.env` file is provided in this project under `.env.dist`
