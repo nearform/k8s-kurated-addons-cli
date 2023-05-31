@@ -16,12 +16,12 @@ This project is intended for building an executable file to run on various CI/CD
     - [lima](https://github.com/lima-vm/lima) + [nerdctl](https://github.com/containerd/nerdctl) ( macOS only )
 
 
-### Run from code
+### Build & run example Nodejs application from code
 
 1. Run `go run main.go --project-directory example build`
-2. Run `docker run ghcr.io/nearform/k8s-kurated-addons-cli:latest`
-3. You should see the `KKA-CLI from NearForm` output in your console
-4. Remove the image `docker image rmi -f ghcr.io/nearform/k8s-kurated-addons-cli:latest`
+2. Run `docker run k8s-kurated-addons-cli/example:latest`
+3. You should see the hello world message.
+4. Remove the image `docker image rmi -f k8s-kurated-addons-cli/example:latest`
 
 ### Build the executable
 
