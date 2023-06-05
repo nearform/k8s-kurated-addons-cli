@@ -3,7 +3,7 @@ module github.com/nearform/k8s-kurated-addons-cli
 go 1.20
 
 require (
-	github.com/docker/docker v23.0.1+incompatible
+	github.com/docker/docker v23.0.3+incompatible
 	github.com/moby/term v0.0.0-20221205130635-1aeaba878587
 	github.com/urfave/cli/v2 v2.25.0
 	k8s.io/api v0.27.1
